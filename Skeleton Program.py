@@ -76,7 +76,9 @@ def DisplayMenu():
   print('Select an option from the menu (or enter q to quit): ', end='')
 
 def GetMenuChoice():
-  Choice = input()
+  Choice = input().lower()
+  if Choice == 'quit':
+    Choice = 'q'  
   print()
   return Choice
 
