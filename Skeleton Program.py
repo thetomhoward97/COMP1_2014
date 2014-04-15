@@ -5,6 +5,7 @@
 # version 2 edited 06/03/2014
 
 import random
+import datetime
 
 NO_OF_RECENT_SCORES = 3
 
@@ -17,6 +18,7 @@ class TRecentScore():
   def __init__(self):
     self.Name = ''
     self.Score = 0
+    self.Date = ''
 
 Deck = [None]
 RecentScores = [None]
@@ -164,14 +166,15 @@ def ResetRecentScores(RecentScores):
   for Count in range(1, NO_OF_RECENT_SCORES + 1):
     RecentScores[Count].Name = ''
     RecentScores[Count].Score = 0
-
+    RecentScores[Count].Date = 0
+    
 def DisplayRecentScores(RecentScores):
   print()
   print('Recent Scores: ')
   print()
-  print('{0:<10}{1}'.format('Name','Score'))
+  print('{0:<10}{1}{2}'.format('Name','Score','Date'))
   for Count in range(1, NO_OF_RECENT_SCORES + 1):    
-    print('{0:<10}{1}'.format(RecentScores[Count].Name,RecentScores[Count].Score))
+    print('{0:<10}{1}{2}'.format(RecentScores[Count].Name,RecentScores[Count].Score,RecentScores[Count].Date))
   print()
   print('Press the Enter key to return to the main menu')
   input()
@@ -179,6 +182,9 @@ def DisplayRecentScores(RecentScores):
 
 def UpdateRecentScores(RecentScores, Score):
   ValidInput=False
+  Now = datetime.datetime.now()
+  Year=str(Now.year)
+  Date=('{0}/{1}/{2}'.format(Now.day,Now.month,Year[2:4]))
   while ValidInput==False:
     UpdateScore=input('Do you want to add your name to the recent score table? (y or n): ').lower()
     print('')
@@ -204,6 +210,7 @@ def UpdateRecentScores(RecentScores, Score):
         Count = NO_OF_RECENT_SCORES
       RecentScores[Count].Name = PlayerName
       RecentScores[Count].Score = Score
+      RecentScores[Count].Date = Date
       ValidInput=True
 
 def PlayGame(Deck, RecentScores):
