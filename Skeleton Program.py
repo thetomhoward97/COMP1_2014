@@ -134,7 +134,7 @@ def GetPlayerName():
     print()
     PlayerName = input('Please enter your name: ')
     print()
-    if len(PlayerName) > 0:
+    if len(PlayerName) > 0 and len(PlayerName)< 10:
       ValidName = True
   return PlayerName
 
@@ -169,9 +169,9 @@ def DisplayRecentScores(RecentScores):
   print()
   print('Recent Scores: ')
   print()
-  print('Name','Score'
-  Count in range(1, NO_OF_RECENT_SCORES + 1):    
-    print('{0}{1}(RecentScores[Count].Name,RecentScores[Count].Score)
+  print('{0:<10}{1}'.format('Name','Score'))
+  for Count in range(1, NO_OF_RECENT_SCORES + 1):    
+    print('{0:<10}{1}'.format(RecentScores[Count].Name,RecentScores[Count].Score))
   print()
   print('Press the Enter key to return to the main menu')
   input()
