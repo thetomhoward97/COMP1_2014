@@ -18,7 +18,7 @@ class TRecentScore():
   def __init__(self):
     self.Name = ''
     self.Score = 0
-    self.Date = ''
+    self.Date = '--/--/--'
 
 Deck = [None]
 RecentScores = [None]
@@ -134,7 +134,7 @@ def GetPlayerName():
   ValidName= False
   while ValidName == False:
     print()
-    PlayerName = input('Please enter your name: ')
+    PlayerName = input('Please enter your name (1-9 characters): ')
     print()
     if len(PlayerName) > 0 and len(PlayerName)< 10:
       ValidName = True
@@ -166,7 +166,7 @@ def ResetRecentScores(RecentScores):
   for Count in range(1, NO_OF_RECENT_SCORES + 1):
     RecentScores[Count].Name = ''
     RecentScores[Count].Score = 0
-    RecentScores[Count].Date = 0
+    RecentScores[Count].Date =  '--/--/--'
     
 def DisplayRecentScores(RecentScores):
   print()
