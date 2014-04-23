@@ -213,6 +213,22 @@ def UpdateRecentScores(RecentScores, Score):
       RecentScores[Count].Date = Date
       ValidInput=True
 
+def DisplayOptions():
+  print('OPTION MENU')
+  print()
+  print('1. Set Ace to be HIGH or LOW')
+  print()
+
+def GetOptionChoice():
+  print('Select an option from the menu')
+  OptionChoice=input()
+  print()
+  return OptionChoice
+
+def SetOptions(OptionChoice):
+  if OptionChoice == 1:
+    SetAceHighOrLow()
+
 def PlayGame(Deck, RecentScores):
   LastCard = TCard()
   NextCard = TCard()
