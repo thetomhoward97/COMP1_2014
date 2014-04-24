@@ -6,6 +6,8 @@ The function that needs to be changed in order for the options to be displayed i
 ##Question 3
 The function needed to be changed to ensure the comparisons work is GetRank()
 ##Pseudo Code
+
+
 FUNCTION DisplayOptions
    OUTPUT OPTION MENU
    OUTPUT
@@ -26,4 +28,13 @@ FUNCTION SetOptions(OptionChoice: string)
    IF OptionChoice = q THEN
       
 FUNCTION SetAceHighOrLow
-   OUTPUT  
+   AceHigh: Boolean
+   AceHighOrLow: string
+   OUTPUT  Do you want Ace to be high or low? (h/l)
+   INPUT AceHighOrLow
+   IF AceHighOrLow = h THEN
+      AceHigh <- TRUE
+RETURN AceHigh
+END FUNCTION
+   
+   
