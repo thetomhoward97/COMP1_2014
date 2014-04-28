@@ -23,6 +23,7 @@ class TRecentScore():
 Deck = [None]
 RecentScores = [None]
 Choice = ''
+AceHigh = False
 
 def GetRank(RankNo):
   Rank = ''
@@ -127,7 +128,9 @@ def GetCard(ThisCard, Deck, NoOfCardsTurnedOver):
 
 def IsNextCardHigher(LastCard, NextCard):
   Higher = False
-  if NextCard.Rank > LastCard.Rank:
+  if AceHigh == True and NextCard.Rank == 1:
+    NextCard.Rank = 14
+  elif NextCard.Rank > LastCard.Rank:
     Higher = True
   return Higher
 
@@ -235,15 +238,13 @@ def GetOptionChoice():
   return OptionChoice
 
 def SetOptions(OptionChoice):
-  if OptionChoice == 1:
-    AceHigh=SetAceHighOrLow()
+  if OptionChoice == '1':
+    SetAceHighOrLow()
 
 def SetAceHighOrLow():
   AceHighOrLow=input('Do you want the Ace or be high or low? (h/l): ').lower()
-  AceHigh = False
   if AceHighOrLow == 'h':
     AceHigh = True
-  return AceHigh
     
 def PlayGame(Deck, RecentScores):
   LastCard = TCard()
@@ -295,6 +296,6 @@ if __name__ == '__main__':
       ResetRecentScores(RecentScores)
     elif Choice == '5':
       DisplayOptions()
-      GetOptionChoice()
-      OptionChoice=SetOptions
-      AceHigh=SetAceHighOrLow()
+      OptionChoice=GetOptionChoice()
+      SetOptions(OptionChoice)
+      
