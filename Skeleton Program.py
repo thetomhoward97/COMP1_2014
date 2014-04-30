@@ -80,6 +80,7 @@ def DisplayMenu():
   print('3. Display recent scores')
   print('4. Reset recent scores')
   print('5. Options')
+  print('6. Save scores')
   print()
   print('Select an option from the menu (or enter q to quit): ', end='')
 
@@ -270,6 +271,11 @@ def SetAceHighOrLow():
       Valid = True
     else:
       print('Please enter h or l')
+
+def SaveScores(RecentScores):
+  with open('save_scores.txt', mode='w', encoding='utf-8') as my_file:
+    for count on range(1, NO_OF_RECENT_SCORES):
+      my_file.write(RecentScores[count]+'\n') 
     
 def PlayGame(Deck, RecentScores):
   LastCard = TCard()
