@@ -177,12 +177,13 @@ def ResetRecentScores(RecentScores):
     RecentScores[Count].Date =  '--/--/--'
     
 def DisplayRecentScores(RecentScores):
+  BubbleSortScores(RecentScores)
   print()
   print('Recent Scores: ')
   print()
-  print('{0:<10}{1:<10}{2}'.format('Name','Score','Date'))
+  print('{0:<10}{1:<10}{2:<10}'.format('Name','Score','Date'))
   for Count in range(1, NO_OF_RECENT_SCORES + 1):    
-    print('{0:<10}{1:<10}{2}'.format(RecentScores[Count].Name,RecentScores[Count].Score,RecentScores[Count].Date))
+    print('{0:<10}{1:<10}{2:<10}'.format(RecentScores[Count].Name,RecentScores[Count].Score,RecentScores[Count].Date))
   print()
   print('Press the Enter key to return to the main menu')
   input()
@@ -218,6 +219,19 @@ def UpdateRecentScores(RecentScores, Score):
       RecentScores[Count].Score = Score
       RecentScores[Count].Date = Date
       ValidInput=True
+
+def BubbleSortScores(RecentScores):
+  swapped = True
+  while swapped:
+    swapped = False
+    count = 1
+    for count in range(1, NO_OF_RECENT_SCORES):
+      if RecentScores[count+1].Score > RecentScores[count].Score:
+        temp = RecentScores[count+1]
+        RecentScores[count+1] = RecentScores[count]
+        RecentScores[count] = temp
+        swapped = True
+      count = count + 1
 
 def DisplayOptions():
   print('OPTION MENU')
