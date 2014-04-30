@@ -5,7 +5,7 @@
 # version 2 edited 06/03/2014
 
 import random
-import datetime
+import time
 
 NO_OF_RECENT_SCORES = 3
 
@@ -27,6 +27,8 @@ AceHigh = False
 
 def GetRank(RankNo):
   Rank = ''
+  if AceHigh == True:
+    RankNo = RankNo + 1
   if RankNo == 1:
     Rank = 'Ace'
   elif RankNo == 2:
@@ -53,6 +55,8 @@ def GetRank(RankNo):
     Rank = 'Queen'
   elif RankNo == 13:
     Rank = 'King'
+  elif RankNo == 14:
+    Rank = 'Ace'
   return Rank
 
 def GetSuit(SuitNo):
@@ -186,9 +190,7 @@ def DisplayRecentScores(RecentScores):
 
 def UpdateRecentScores(RecentScores, Score):
   ValidInput=False
-  Now = datetime.datetime.now()
-  Year=str(Now.year)
-  Date=('{0}/{1}/{2}'.format(Now.day,Now.month,Year[2:4]))
+  Date=(time.strftime('%d/%m/%y'))
   while ValidInput==False:
     UpdateScore=input('Do you want to add your name to the recent score table? (y or n): ').lower()
     print('')
@@ -242,9 +244,18 @@ def SetOptions(OptionChoice):
     SetAceHighOrLow()
 
 def SetAceHighOrLow():
-  AceHighOrLow=input('Do you want the Ace or be high or low? (h/l): ').lower()
-  if AceHighOrLow == 'h':
-    AceHigh = True
+  global AceHigh
+  AceHigh = False
+  Valid = False
+  while Valid == False:
+    AceHighOrLow=input('Do you want the Ace or be high or low? (h/l): ').lower()
+    if AceHighOrLow == 'h':
+      Valid = True
+      AceHigh = True
+    elif AceHighOrLow == 'l':
+      Valid = True
+    else:
+      print('Please enter h or l')
     
 def PlayGame(Deck, RecentScores):
   LastCard = TCard()
