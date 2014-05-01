@@ -274,9 +274,23 @@ def SetAceHighOrLow():
 
 def SaveScores(RecentScores):
   with open('save_scores.txt', mode='w', encoding='utf-8') as my_file:
-    for count on range(1, NO_OF_RECENT_SCORES):
-      my_file.write(RecentScores[count]+'\n') 
-    
+    for Count in range(1, NO_OF_RECENT_SCORES+1):
+      my_file.write(RecentScores[Count].Name+'\n')
+      my_file.write(str(RecentScores[Count].Score)+'\n')
+      my_file.write(RecentScores[Count].Date+'\n')
+    input('Save sucessful, press Enter key to return to menu')
+
+def LoadScores():
+  count=1
+  with open('save_scores.txt', mode='r', encoding='utf-8') as my_file:
+    for line in my_file:
+      RecentScores[count].Name=line.rstrip('\n')
+      Score=line.rstrip('\n')
+      RecentScores[count].Score=int(Score)
+      RecentScores[count].Date=line+.rstrip('\n')
+      count+=1
+      
+  
 def PlayGame(Deck, RecentScores):
   LastCard = TCard()
   NextCard = TCard()
@@ -310,6 +324,7 @@ if __name__ == '__main__':
     Deck.append(TCard())
   for Count in range(1, NO_OF_RECENT_SCORES + 1):
     RecentScores.append(TRecentScore())
+  LoadScores()
   Choice = ''
   while Choice != 'q':
     DisplayMenu()
@@ -329,4 +344,6 @@ if __name__ == '__main__':
       DisplayOptions()
       OptionChoice=GetOptionChoice()
       SetOptions(OptionChoice)
+    elif Choice == '6':
+      SaveScores(RecentScores)
       
